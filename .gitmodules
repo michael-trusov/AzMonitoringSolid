@@ -1,0 +1,3 @@
+[submodule "AzMonitoringCore"]
+	path = AzMonitoringCore
+	url = https://internal-epam-projects@dev.azure.com/internal-epam-projects/CTCAzureMonitor/_git/AzMonitoringCore
