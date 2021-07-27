@@ -11,6 +11,9 @@
     <ProjectReference Include="..\..\AZMA.Application\AZMA.Application.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
