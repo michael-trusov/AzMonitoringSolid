@@ -24,13 +24,14 @@ namespace AZMA.Application.HttpClients
         {
             var noiPayloadAsJson = JsonConvert.SerializeObject(noiPayload);
 
-            using (var content = new StringContent(noiPayloadAsJson))
+            using (var content = new StringContent(noiPayloadAsJson, System.Text.Encoding.UTF8, "application/json"))
             {
                 var httpResponse = await _httpClient.PostAsync(_appSettings.NoiSettings.ServiceEndpoint, content);
 
                 return new RestCallResult
                 {
-                    Url = _appSettings.NoiSettings.ServiceEndpoint,
+                    RequestUrl = _appSettings.NoiSettings.ServiceEndpoint,
+                    RequestBody = noiPayloadAsJson,
                     StatusCode = httpResponse.StatusCode,
                     ReasonPhrase = httpResponse.ReasonPhrase
                 };

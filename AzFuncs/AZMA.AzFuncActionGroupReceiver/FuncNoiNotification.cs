@@ -17,7 +17,7 @@ namespace AZMA.AzFuncActionGroupReceiver
 {
     public class FuncNoiNotification
     {
-        const string FUNC_VERSION = "1.1";
+        const string FUNC_VERSION = "1.2";
 
         private IAppSettings _appSettings;
 
@@ -65,7 +65,7 @@ namespace AZMA.AzFuncActionGroupReceiver
                                                               .Validate();
 
                     var restCallResult = await new CreateSnowTicket(_noiHttpClient, noiPayload).ExecuteAsync();
-                    log.LogInformation($"[apim-noi-notification, v{FUNC_VERSION}] REST call was sent to '{restCallResult.Url}'. Response status code: '{restCallResult.StatusCode}', Response Reason Phrase: '{restCallResult.ReasonPhrase}'");
+                    log.LogInformation($"[apim-noi-notification, v{FUNC_VERSION}] REST call was sent to '{restCallResult.RequestUrl}' with request body '{restCallResult.RequestBody}'. Response status code: '{restCallResult.StatusCode}', Response Reason Phrase: '{restCallResult.ReasonPhrase}'");
 
                     result = restCallResult.StatusCode;
                 }
