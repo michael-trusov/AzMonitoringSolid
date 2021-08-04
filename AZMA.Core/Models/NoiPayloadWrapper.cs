@@ -48,9 +48,11 @@ namespace AZMA.Core.Models
             }
 
             string cmdbClass;
-            if (!cmdbClasses.TryGetValue(_noiPayload.Node, out cmdbClass))
+            if (!cmdbClasses.TryGetValue(_noiPayload.Node.ToLower(), out cmdbClass))
             {
-                throw new NotFoundCmdbClassException($"CmdbClass '{_noiPayload.Node}' was not found.");
+                //TODO: find out class for FrontDoor, use apim as a default foir now
+                _noiPayload.ServiceNowCmdbClass = "ctc-nonprod-apim-cc-apim";
+                // throw new NotFoundCmdbClassException($"CmdbClass '{_noiPayload.Node}' was not found.");
             }
 
             _noiPayload.ServiceNowCmdbClass = cmdbClass;
