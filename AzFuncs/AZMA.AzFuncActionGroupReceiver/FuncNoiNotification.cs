@@ -17,7 +17,7 @@ namespace AZMA.AzFuncActionGroupReceiver
 {
     public class FuncNoiNotification
     {
-        const string FUNC_VERSION = "1.2";
+        const string FUNC_VERSION = "1.3";
 
         private IAppSettings _appSettings;
 

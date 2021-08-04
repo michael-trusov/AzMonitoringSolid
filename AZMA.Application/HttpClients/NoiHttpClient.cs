@@ -3,9 +3,10 @@ using AZMA.Application.Models;
 using AZMA.Core.Interfaces;
 using AZMA.Core.Models;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace AZMA.Application.HttpClients
 {
@@ -22,7 +23,7 @@ namespace AZMA.Application.HttpClients
 
         public async Task<RestCallResult> CreateNoiTicketAsync(NoiPayload noiPayload)
         {
-            var noiPayloadAsJson = JsonConvert.SerializeObject(noiPayload);
+            var noiPayloadAsJson = JsonSerializer.Serialize(noiPayload);
 
             using (var content = new StringContent(noiPayloadAsJson, System.Text.Encoding.UTF8, "application/json"))
             {
