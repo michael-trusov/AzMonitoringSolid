@@ -28,9 +28,9 @@ namespace AZMA.Application.Services
             _noiHttpClient = noiHttpClient;
         }
 
-        public IEnumerable<IAction> Analyze(AlertStandardSchema alertStandardSchema, string originalData)
+        public IEnumerable<IRestCall> Analyze(AlertStandardSchema alertStandardSchema, string originalData)
         {
-            List<IAction> commands = new List<IAction>();
+            List<IRestCall> commands = new List<IRestCall>();
 
             var isApiManagementTargetResource = alertStandardSchema.Data.Essentials.AlertTargetIDs
                                                                                    .Any(e => e.ToLower().Contains(AlertTargetIDs.MsApiManagement_ResourceId));

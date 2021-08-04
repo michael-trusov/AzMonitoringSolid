@@ -5,6 +5,6 @@ namespace AZMA.Application.Interfaces
 {
     public interface IAlertStandardSchemaAnalyzer
     {
-        IEnumerable<IAction> Analyze(AlertStandardSchema alertStandardSchema, string originalData);
+        IEnumerable<IRestCall> Analyze(AlertStandardSchema alertStandardSchema, string originalData);
     }
 }

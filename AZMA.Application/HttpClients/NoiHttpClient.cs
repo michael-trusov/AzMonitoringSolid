@@ -1,4 +1,5 @@
 ﻿using AZMA.Application.Infrastructure.Configuration;
+using AZMA.Application.Models;
 using AZMA.Core.Interfaces;
 using AZMA.Core.Models;
 using Microsoft.Extensions.Logging;
@@ -11,17 +12,15 @@ namespace AZMA.Application.HttpClients
     class NoiHttpClient : INoiHttpClient
     {
         private HttpClient _httpClient;
-        private IAppSettings _appSettings;
-        private ILogger<NoiHttpClient> _logger;
+        private IAppSettings _appSettings;        
 
-        public NoiHttpClient(HttpClient httpClient, IAppSettings appSettings, ILogger<NoiHttpClient> logger)
+        public NoiHttpClient(HttpClient httpClient, IAppSettings appSettings)
         {
             _httpClient = httpClient;
-            _appSettings = appSettings;
-            _logger = logger;
+            _appSettings = appSettings;            
         }
 
-        public async Task CreateNoiTicketAsync(NoiPayload noiPayload)
+        public async Task<RestCallResult> CreateNoiTicketAsync(NoiPayload noiPayload)
         {
             var noiPayloadAsJson = JsonConvert.SerializeObject(noiPayload);
 
@@ -29,7 +28,12 @@ namespace AZMA.Application.HttpClients
             {
                 var httpResponse = await _httpClient.PostAsync(_appSettings.NoiSettings.ServiceEndpoint, content);
 
-                _logger.LogInformation($"Status Code: {httpResponse.StatusCode}, Reason Phrase: {httpResponse.ReasonPhrase}");
+                return new RestCallResult
+                {
+                    Url = _appSettings.NoiSettings.ServiceEndpoint,
+                    StatusCode = httpResponse.StatusCode,
+                    ReasonPhrase = httpResponse.ReasonPhrase
+                };
             }
         }
     }

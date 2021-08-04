@@ -1,11 +1,12 @@
 ﻿using AZMA.Application.HttpClients;
 using AZMA.Application.Interfaces;
+using AZMA.Application.Models;
 using AZMA.Core.Models;
 using System.Threading.Tasks;
 
 namespace AZMA.Application.Commands
 {
-    public class CreateSnowTicket : IAction
+    public class CreateSnowTicket : IRestCall
     {
         INoiHttpClient _noiHttpClient;
         NoiPayload _noiPayload;
@@ -16,9 +17,9 @@ namespace AZMA.Application.Commands
             _noiPayload = noiPayload;
         }
 
-        public async Task ExecuteAsync()
+        public async Task<RestCallResult> ExecuteAsync()
         {           
-            await _noiHttpClient.CreateNoiTicketAsync(_noiPayload);            
+            return await _noiHttpClient.CreateNoiTicketAsync(_noiPayload);            
         }
     }
 }

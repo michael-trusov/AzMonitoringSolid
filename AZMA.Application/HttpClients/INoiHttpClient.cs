@@ -1,13 +1,11 @@
-﻿using AZMA.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AZMA.Application.Models;
+using AZMA.Core.Models;
 using System.Threading.Tasks;
 
 namespace AZMA.Application.HttpClients
 {
     public interface INoiHttpClient
     {
-        Task CreateNoiTicketAsync(NoiPayload noiPayload);
+        Task<RestCallResult> CreateNoiTicketAsync(NoiPayload noiPayload);
     }
 }
