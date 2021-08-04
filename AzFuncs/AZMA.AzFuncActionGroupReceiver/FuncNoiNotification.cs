@@ -40,7 +40,7 @@ namespace AZMA.AzFuncActionGroupReceiver
         }
 
         [FunctionName("apim-noi-notification")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, ILogger log)
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, ILogger log)
         {
             log.LogInformation($"[apim-noi-notification, v{FUNC_VERSION}] Function was triggered...");
 
